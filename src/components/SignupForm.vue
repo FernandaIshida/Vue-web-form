@@ -14,7 +14,8 @@
 
     <label>Skills: </label>
     <input type="text" v-model="tempSkill" @keyup.alt="addSkill">
-    <div v-for="skill in skills" :key="skill" class="pill">{{ skill }}
+    <div v-for="skill in skills" :key="skill" class="pill">
+        <span @click="deleteSkill(skill)">{{ skill }}</span>
 
     </div>
 
@@ -33,6 +34,8 @@
 </template>
 
 <script>
+// Challenge
+// -When a user clicks on a skill, delete that skill
 export default {
     data() {
         return {
@@ -53,6 +56,11 @@ export default {
                 }
                 this.tempSkill = ''
             }
+        },
+        deleteSkill(skill) {
+            this.skills = this.skills. filter((item) => {
+                return skill !== item
+            })
         }
     }
 }
@@ -91,6 +99,18 @@ export default {
         margin: 0 .625rem 0 0;
         position: relative;
         top: .125rem
+    }
+    .pill {
+        display: inline-block;
+        margin: 1.25rem .625rem 0 0;
+        padding: .375rem .75rem;
+        background: #eee;
+        border-radius: 1.25rem;
+        font-size: .75rem;
+        letter-spacing: .0625rem;
+        font-weight: bold;
+        color: #777;
+        cursor: pointer;
     }
 
 </style>
